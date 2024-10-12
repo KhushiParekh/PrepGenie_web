@@ -38,16 +38,8 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-[#f9dbc1] flex items-center justify-center relative">
-      
-        {/* Left Image */}
-        <img
-          src={img1}
-          alt="Image 1"
-          className="h-80 w-80  ml-1 mr-2 bottom-0 left-2"
-        />
-      
-
-      <div className="bg-white rounded-3xl shadow-md w-1/3 p-8 relative z-10 transition-all duration-500 ease-in-out transform">
+        <img src={img1} alt="Image 1"className="h-80 w-80  ml-1 mr-2 bottom-0 left-2"/>
+        <div className="bg-white rounded-3xl shadow-md w-1/3 p-8 relative z-10 transition-all duration-500 ease-in-out transform">
         <h2 className="text-2xl font-bold mb-6 text-center">
           {showSignup ? 'Sign Up' : 'Login'}
         </h2>
@@ -57,11 +49,9 @@ const LoginPage = () => {
               {showSignup ? 'Enter Email' : 'Email'}
             </label>
             <input
-              type="email"
-              id="email"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
+              type="email"  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
+              id="email" placeholder={showSignup ? 'Your Email for Signup' : 'Your Registered Email'}
               value={email}
-              placeholder={showSignup ? 'Your Email for Signup' : 'Your Registered Email'}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -71,16 +61,14 @@ const LoginPage = () => {
               {showSignup ? 'Create Password' : 'Password'}
             </label>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? 'text' : 'password'} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
               id="password"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
               placeholder={showSignup ? 'Create Your Password' : 'Enter Your Password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <div
-              className="absolute text-gray-600 cursor-pointer right-3 top-3"
+            <div className="absolute text-gray-600 cursor-pointer right-3 top-3"
               onClick={togglePasswordVisibility}
             >
               {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -92,24 +80,21 @@ const LoginPage = () => {
             </label>
             <input
               type={showPassword ? 'text' : 'password'}
-              id="confirm-password"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
+              id="confirm-password" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
               placeholder="confirm password"
               value={Confirmpassword}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <div
-              className="absolute text-gray-600 cursor-pointer right-3 top-3"
+            <div className="absolute text-gray-600 cursor-pointer right-3 top-3"
               onClick={togglePasswordVisibility}
             >
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </div>
           </div> : null}
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-          <button
+          <button className="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
             type="submit"
-            className="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
           >
             {showSignup ? 'Sign Up' : 'Login'}
           </button>

@@ -123,9 +123,8 @@ const formatTime = (seconds) => {
             {currentQuestion.options.map((option, index) => (
               <label key={index} className="block mb-2">
                 <input
-                  type="radio"
+                  type="radio" value={option}
                   name={`question-${currentQuestion.id}`}
-                  value={option}
                   checked={currentQuestion.selectedOption === option}
                   onChange={() => handleOptionSelect(option)}
                 />{' '}

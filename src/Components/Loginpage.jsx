@@ -16,7 +16,7 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (email === 'test@gmail.com' && password === 'password') {
+    if (email === 'test@gmail.com' && password === 'pas$word') {
       navigate('/test');
     } else {
       setError('Invalid email or password');
@@ -50,7 +50,7 @@ const LoginPage = () => {
             </label>
             <input
               type="email"  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
-              id="email" placeholder={showSignup ? 'Your Email for Signup' : 'Your Registered Email'}
+              id="email" placeholder={showSignup ? 'Your Email for Signup' : 'Your Registered Email(test@gmail.com)'}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -63,7 +63,7 @@ const LoginPage = () => {
             <input
               type={showPassword ? 'text' : 'password'} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
               id="password"
-              placeholder={showSignup ? 'Create Your Password' : 'Enter Your Password'}
+              placeholder={showSignup ? 'Create Your Password' : 'Enter Your Password(pas$word)'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

@@ -21,7 +21,7 @@ const questionsData = [
 const TestPage = () => {
   const [questions, setQuestions] = useState(questionsData);
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
-  const [timeRemaining, setTimeRemaining] = useState(15); 
+  const [timeRemaining, setTimeRemaining] = useState(300); 
   const [attemptedCount, setAttemptedCount] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
   const [notVisitedCount, setNotVisitedCount] = useState(questions.length);

@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import img1 from '../assets/test.png';
 import img2 from '../assets/girl.png';
+import img3 from '../assets/signup.png';
+import img4 from '../assets/Signup.jpg';
+import img5 from '../assets/img5.png';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const LoginPage = () => {
@@ -35,12 +38,15 @@ const LoginPage = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+//background: radial-gradient(#f9dbc1, #f9dbc1);
+//background: radial-gradient(#f9dbc1, #f9dbc1);
   return (
-    <div className="min-h-screen bg-[#f9dbc1] flex items-center justify-center relative">
-        <img src={img1} alt="Image 1"className="h-80 w-80  ml-1 mr-2 bottom-0 left-2"/>
-        <div className="bg-white rounded-3xl shadow-md w-1/3 p-8 relative z-10 transition-all duration-500 ease-in-out transform">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+    <div className="min-h-screen bg-[#E0D1A8] flex items-center justify-center ">
+      <div className='flex w-[60%] min-h-[500px] lg:min-h-[600px] bg-slate-400 justify-center rounded-3xl shadow-lg my-0'>
+      <img src={showSignup ? img5 : img1} alt="Image 1"className="items-center m-2 ml-3 mt-28 h-60 w-60 lg:h-80 lg:w-80 lg:mb-0" />
+        <div className="relative z-10 items-center justify-center w-full p-6 pt-10 transition-all duration-500 ease-in-out transform bg-white shadow-md lg:p-8 rounded-r-3xl">
+       <div className='mt-9 mx-7'>
+       <h2 className="mb-6 text-3xl font-extrabold text-center">
           {showSignup ? 'Sign Up' : 'Login'}
         </h2>
         <form onSubmit={showSignup ? handleSignup : handleLogin}>
@@ -49,7 +55,7 @@ const LoginPage = () => {
               {showSignup ? 'Enter Email' : 'Email'}
             </label>
             <input
-              type="email"  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
+              type="email"  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm outline-none"
               id="email" placeholder={showSignup ? 'Your Email for Signup' : 'Your Registered Email(test@gmail.com)'}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +67,7 @@ const LoginPage = () => {
               {showSignup ? 'Create Password' : 'Password'}
             </label>
             <input
-              type={showPassword ? 'text' : 'password'} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
+              type={showPassword ? 'text' : 'password'} className="block w-full mt-1 border-gray-300 rounded-md shadow-sm outline-none"
               id="password"
               placeholder={showSignup ? 'Create Your Password' : 'Enter Your Password(pas$word)'}
               value={password}
@@ -80,7 +86,7 @@ const LoginPage = () => {
             </label>
             <input
               type={showPassword ? 'text' : 'password'}
-              id="confirm-password" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm outline-none"
+              id="confirm-password" className="block w-full mt-1 border-gray-300 rounded-md shadow-sm outline-none"
               placeholder="confirm password"
               value={Confirmpassword}
               onChange={(e) => setPassword(e.target.value)}
@@ -92,8 +98,8 @@ const LoginPage = () => {
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </div>
           </div> : null}
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-          <button className="w-full bg-indigo-600 text-white rounded-md py-2 px-4 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+          {error && <p className="mb-4 text-sm text-red-500">{error}</p>}
+          <button className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
             type="submit"
           >
             {showSignup ? 'Sign Up' : 'Login'}
@@ -118,7 +124,10 @@ const LoginPage = () => {
             )}
           </p>
         </div>
+       </div>
       </div>
+      </div>
+        
     </div>
   );
 };

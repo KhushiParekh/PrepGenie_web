@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import img2 from '../assets/girl.png';
+import { useNavigate } from 'react-router-dom';
+import LoginPage from './Loginpage';
 
 const candidate = {
   name: "khushi parekh",
@@ -72,33 +74,59 @@ const formatTime = (seconds) => {
     setReviewCount(review);
     setNotVisitedCount(notVisited);
   };
+  
+  const handleLogout=()=>{
+    window.location.reload();
+    // navigate('/'); 
+    window.location.href = '/';
+    
+  }
+
+  const SubmitEvent = () => {
+    const confirmSubmit = window.confirm("Are you sure you want to submit the test?");
+    
+    if (confirmSubmit) {
+      alert("Test Submitted!");
+    } 
+    
+  };
+  
+  
 
 //bg-[#627182d8],bg-[#6294cdd8],bg-[#c8dffad8]
+          
+          //f3e9e0f0 ,bg-[#f93232bf], left-[#762d0369],#e0cebdcb,#E0D1A8,
 
   return (
-    <div className="h-screen w-auto px-24 shadow-md  bg-[#f9dbc1f0] flex flex-col">
+    <div className="h-screen w-auto px-24 shadow-md  bg-[#c2b1b1] flex flex-col">
 
-    <div className="flex justify-end  pt-3">
-      <div className="flex items-center">
-        <img src={candidate.profilePic} alt="Profile" className="rounded-full w-12 h-12 mr-3" />
+    <div className="flex justify-between pt-3">
+      <div className="flex items-center ">
+        <img src={candidate.profilePic} alt="Profile" className="w-12 h-12 mr-3 rounded-full" />
         <h2 className="text-xl font-bold">{candidate.name}</h2>
+      </div>
+      <div className='bg-[#e46969] items-center rounded-xl justify-center flex cursor-default'>
+        <button className='h-auto mx-2 my-0 cursor-pointer'
+        onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
 
     <div className="flex h-full gap-1">
-      <div className="w-[26%] bg-[#762d0369]  p-4 mt-12 rounded-md h-[80%] shadow-md">
-        <h2 className="text-lg font-bold mb-4">Test Information</h2>
-        <div className="grid grid-cols-2 mb-5">
-          <p className='rounded-md px-2 items-center justify-center mx-auto my-1 left-0'>Total Questions:{questions.length}</p>
-          <p className='bg-green-600 rounded-md px-2 items-center justify-center mx-3 my-1 left-0'>Attempted: {attemptedCount}</p>
-          <p className='bg-[#f93232bf] rounded-md px-2 items-center justify-center mx-2 my-1 left-0'>Not Attempted: {questions.length - attemptedCount - reviewCount}</p>
+      <div className="w-auto bg-[#98a8bd]  p-4 mt-12 rounded-md h-[80%] shadow-md">
+        <h2 className="mb-4 text-lg font-bold">Test Information</h2>
+        <div className="grid grid-cols-2 p-3 mb-5 border-2 rounded-md shadow-lg border-[#231616d9] backdrop-blur-sm">
+          <p className='left-0 items-center justify-center px-2 mx-auto my-1 rounded-md'>Total Questions:{questions.length}</p>
+          <p className='left-0 items-center justify-center px-2 mx-3 my-1 bg-green-600 rounded-md'>Attempted: {attemptedCount}</p>
+          <p className='bg-[#f93232bf] left-0 items-center justify-center px-2 mx-2 my-1 rounded-md '>Not Attempted: {questions.length - attemptedCount - reviewCount}</p>
           <p className='bg-[#f7e662e7] rounded-md px-2 items-center justify-center mx-auto my-1 left-0'>Marked for Review: {reviewCount}</p>
-          <p className='bg-gray-300 rounded-md px-2 items-center justify-center mx-3 my-1'>Not Visited: {notVisitedCount}</p>
+          <p className='items-center justify-center px-2 mx-3 my-1 bg-gray-300 rounded-md'>Not Visited: {notVisitedCount}</p>
         </div>
-        <h3 className="font-bold mb-2">Questions Status</h3>
-        <div className="flex flex-wrap gap-2">
+        <h3 className="mb-2 font-bold">Questions Status</h3>
+        <div className="flex flex-wrap gap-2 ">
           {questions.map(q => (
-            <button className={`p-2 rounded text-white ${
+            <button className={`p-2 rounded hover:border-slate-950 hover:border text-white ${
                 q.status === 'attempted' ? 'bg-green-500' :
                 q.status === 'marked for review' ? 'bg-yellow-500' : 'bg-gray-300'
               }`}
@@ -114,10 +142,10 @@ const formatTime = (seconds) => {
       </div>
 
      
-      <div className="w-3/4 p-6 flex flex-col bg-[#f3e9e0f0] mt-12 rounded-md shadow-lg h-[80%]">
+      <div className="w-3/4 p-6 flex flex-col bg-[#d5dbe8d0]  mt-12 rounded-md shadow-lg h-[80%]">
         
         <div className="flex-grow">
-          <h3 className="text-lg font-semibold mb-4">Question {currentQuestion.id}:</h3>
+          <h3 className="mb-4 text-lg font-semibold">Question {currentQuestion.id}:</h3>
           <p className="mb-4">{currentQuestion.text}</p>
           <div className="mb-4">
             {currentQuestion.options.map((option, index) => (
@@ -138,10 +166,15 @@ const formatTime = (seconds) => {
             >
               Clear Response </button>
 
-            <button className="px-4 py-2 bg-yellow-500 text-white rounded"
+            <button className="px-4 py-2 text-white bg-yellow-500 rounded"
               onClick={handleMarkForReview}
             >
               Mark for Review</button>
+              
+            {currentQuestion.id=== 5 ? <button className="px-4 py-2 text-white rounded bg-[#10b246] hover:bg-[#037e2c]"
+              onClick={SubmitEvent}
+            >
+            Submit</button>: null}
           </div>
         </div>
       </div>

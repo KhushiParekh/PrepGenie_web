@@ -41,7 +41,7 @@ const LoginPage = () => {
 //background: radial-gradient(#f9dbc1, #f9dbc1);
 //background: radial-gradient(#f9dbc1, #f9dbc1);
   return (
-    <div className="min-h-screen bg-[#E0D1A8] flex items-center justify-center ">
+    <div className="min-h-screen bg-[#e0bfa8] flex items-center justify-center ">
       <div className='flex w-[60%] min-h-[500px] lg:min-h-[600px] bg-slate-400 justify-center rounded-3xl shadow-lg my-0'>
       <img src={showSignup ? img5 : img1} alt="Image 1"className="items-center m-2 ml-3 mt-28 h-60 w-60 lg:h-80 lg:w-80 lg:mb-0" />
         <div className="relative z-10 items-center justify-center w-full p-6 pt-10 transition-all duration-500 ease-in-out transform bg-white shadow-md lg:p-8 rounded-r-3xl">

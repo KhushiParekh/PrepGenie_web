@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import img2 from '../assets/girl.png';
+import img from '../assets/watermark.png';
 import { useNavigate } from 'react-router-dom';
 import LoginPage from './Loginpage';
 
@@ -20,7 +21,7 @@ const questionsData = [
 const TestPage = () => {
   const [questions, setQuestions] = useState(questionsData);
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
-  const [timeRemaining, setTimeRemaining] = useState(90); 
+  const [timeRemaining, setTimeRemaining] = useState(300); 
   const [attemptedCount, setAttemptedCount] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
   const [notVisitedCount, setNotVisitedCount] = useState(questions.length);
@@ -95,10 +96,20 @@ const formatTime = (seconds) => {
 
 //bg-[#627182d8],bg-[#6294cdd8],bg-[#c8dffad8]
           
-          //f3e9e0f0 ,bg-[#f93232bf], left-[#762d0369],#e0cebdcb,#E0D1A8,
+          //f3e9e0f0 ,bg-[#f93232bf], left-[#762d0369],#e0cebdcb,#E0D1A8,#e0bfa8,#c2b1b1
 
   return (
-    <div className="h-screen w-auto px-24 shadow-md  bg-[#c2b1b1] flex flex-col">
+    <div className="h-screen w-auto px-24 shadow-md  bg-[#e0bfa8]  bg-[img] flex flex-col" 
+    //  style={{
+    //   backgroundImage: `url(${img})`,
+    //   backgroundSize: 'cover',
+    //   backgroundBlendMode: 'multiply', 
+    //   backgroundColor: '#e0bfa8', 
+    // }}
+    >
+      <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full pointer-events-none">
+        <img src={img} alt="Watermark" className="w-full h-screen opacity-20"  />
+      </div>
 
     <div className="flex justify-between pt-3">
       <div className="flex items-center ">
@@ -142,14 +153,14 @@ const formatTime = (seconds) => {
       </div>
 
      
-      <div className="w-3/4 p-6 flex flex-col bg-[#d5dbe8d0]  mt-12 rounded-md shadow-lg h-[80%]">
+      <div className="w-3/4 mx-3  p-6 flex flex-col bg-[#dbdfead0]  mt-12 rounded-md shadow-lg h-[80%]">
         
         <div className="flex-grow">
-          <h3 className="mb-4 text-lg font-semibold">Question {currentQuestion.id}:</h3>
-          <p className="mb-4">{currentQuestion.text}</p>
-          <div className="mb-4">
+          <h3 className="mt-5 mb-4 text-xl font-extrabold">Question {currentQuestion.id}:</h3>
+          <p className="mb-4 text-lg font-normal">{currentQuestion.text}</p>
+          <div className="mb-4 ">
             {currentQuestion.options.map((option, index) => (
-              <label key={index} className="block mb-2">
+              <label key={index} className="block mb-2 text-lg font-normal">
                 <input
                   type="radio" value={option}
                   name={`question-${currentQuestion.id}`}

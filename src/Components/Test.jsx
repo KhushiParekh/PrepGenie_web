@@ -21,22 +21,27 @@ const questionsData = [
 const TestPage = () => {
   const [questions, setQuestions] = useState(questionsData);
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
-  const [timeRemaining, setTimeRemaining] = useState(300); 
+  const [timeRemaining, setTimeRemaining] = useState(15); 
   const [attemptedCount, setAttemptedCount] = useState(0);
   const [reviewCount, setReviewCount] = useState(0);
   const [notVisitedCount, setNotVisitedCount] = useState(questions.length);
-  
+  const [isTimedOut, setIsTimedOut] = useState(false);
   const currentQuestion = questions.find(q => q.id === currentQuestionId);
 
   //timer
   useEffect(() => {
-    const timer = setTimeout(()=>{
-        setTimeRemaining(timeRemaining - 1);
-    },1000)
+    const timer = setTimeout(() => {
+      //if (timeRemaining <= 5)
+    if (timeRemaining <= 1) {
+      setIsTimedOut(true);
+      SubmitEvent(); 
+  } else {
+      setTimeRemaining(timeRemaining - 1);
+    }
+  }, 1000);
 
     return () => clearInterval(timer);
     },[timeRemaining]);
-
 
 const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -84,12 +89,20 @@ const formatTime = (seconds) => {
   }
 
   const SubmitEvent = () => {
-    const confirmSubmit = window.confirm("Are you sure you want to submit the test?");
-    
-    if (confirmSubmit) {
-      alert("Test Submitted!");
-    } 
-    
+    if (isTimedOut) {
+      alert("Timezz Up!! Test Submitted.");
+      window.location.reload();
+    // navigate('/'); 
+    window.location.href = '/';
+    } else {
+      const confirmSubmit = window.confirm("Are you sure you want to submit the test?");
+      if (confirmSubmit) {
+        alert("Test Submitted!");
+        window.location.reload();
+        // navigate('/'); 
+        window.location.href = '/';
+      }
+    }
   };
   
   
@@ -148,8 +161,11 @@ const formatTime = (seconds) => {
           ))}
         </div>
         <div className="mt-4">
-          <p><strong>Time Remaining:</strong> {formatTime(timeRemaining)}</p>
-        </div>
+          <p className={`text-lg font-bold ${timeRemaining < 10 ? 'text-red-600' : 'text-black'}`}>
+          <strong>Time Remaining:</strong> {formatTime(timeRemaining)}
+  </p>
+</div>
+
       </div>
 
      
